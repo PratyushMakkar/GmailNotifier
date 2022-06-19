@@ -14,11 +14,12 @@ SCOPES = ['https://mail.google.com/']
 
 load_dotenv()
 GOOGLE_APPLICATION_CREDENTIALS = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
-project_id = os.environ.get("project_id")
-subscription_id = os.environ.get("subscription_id")
+GOOGLE_OAUTH_CREDENTIALS = os.environ.get("GOOGLE_OAUTH_CREDENTIALS")
+PROJECT_ID = os.environ.get("PROJECT_ID")
+SUBSCRIPTION_ID = os.environ.get("SUBSCRIPTION_ID")
 
 subscriber = pubsub.SubscriberClient()
-subscription_path = subscriber.subscription_path(project_id, subscription_id)
+subscription_path = subscriber.subscription_path(PROJECT_ID, SUBSCRIPTION_ID)
 
 def CreateGoogleCredentials():
     if (os.path.exists('token.json')):
@@ -29,7 +30,7 @@ def CreateSubscriptionClient():
 
 def CreateSubscriptionPath():
     subscriber = CreateSubscriptionClient()
-    subscription_path = subscriber.subscription_path(project_id, subscription_id)
+    subscription_path = subscriber.subscription_path(PROJECT_ID,SUBSCRIPTION_ID)
     return subscription_path
 
 def CreateGmailService():
@@ -42,7 +43,7 @@ def CreateGmailService():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'utils/credentials.json', SCOPES)
+                GOOGLE_OAUTH_CREDENTIALS, SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
         with open('token.json', 'w') as token:

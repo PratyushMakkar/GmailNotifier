@@ -18,7 +18,7 @@ from GmailNotificationService.model import GmailModel
 load_dotenv()
 
 service = CreateGmailService()
-topic_name = os.environ.get("topic_name")
+TOPIC_NAME = os.environ.get("TOPIC_NAME")
 
 subscriber = CreateSubscriptionClient()
 subscription_path = CreateSubscriptionPath()
@@ -30,7 +30,7 @@ def SubscribeToUserInbox():
     json = {
         "labelIds": ["UNREAD"],
         "labelFilterAction": "include",
-        "topicName": topic_name
+        "topicName": TOPIC_NAME 
     }
     try: 
         response_object = service.users().watch(userId = "me", body=json).execute()

@@ -6,6 +6,6 @@ from notification import InitiatePushNotification
 if __name__ == '__main__':
     while True:
         InitiatePushNotification()
-        sleep(30 - time() % 30)
+        sleep(60- time() % 60)
        
 

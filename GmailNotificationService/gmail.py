@@ -100,11 +100,12 @@ def ListChanges(startHistoryId: str, userId: str = "me"):
 def _ExtractMessageId(response) -> array:
     message_ids = []
     try: 
+        print(response)
         response_array = response['history']
         for item in response_array:
-            messages_added = item['messagesAdded']
+            messages_added = item['messages']
             for message in messages_added: 
-                message_data = message['message']
+                message_data = message
                 message_ids.append(message_data['id'])
         return message_ids
     except Exception as err:

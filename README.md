@@ -2,6 +2,8 @@
 
 **Gmail Notifier** is a python application script that monitors your Gmail Inbox using the Gmail API for any new emails. The user recieves a desktop notification each time there is a new email sent. 
 
+Here is a snapshot of what the notification might look like!
+![altText](./utils/GmailNotifierTool.png)
 ## :pushpin: Set up 
 1. Use the <kbd>Use this template</kbd> commpand to create a repository with the source code. 
 1. Create a virtual environement <kbd>env</kbd> from the command <kbd>python3 -m venv env</kbd> in the folder where you want to create the project.
